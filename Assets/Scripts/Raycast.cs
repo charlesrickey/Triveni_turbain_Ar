@@ -21,13 +21,14 @@ public class Raycast : MonoBehaviour
     bool first_pinch = true;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-
+    private Animator _anim;
 
     void Start()
     {
         object_spawned = false;
         arrayman = GetComponent<ARRaycastManager>();
         arplneman = GetComponent<ARPlaneManager>();
+        
     }
 
 
@@ -44,8 +45,6 @@ public class Raycast : MonoBehaviour
                     object_spawned = true;
                     arrayman.enabled = false;
                     //  arplneman.planePrefab.GetComponent<MeshRenderer>().enabled = false;
-
-
                 }
                 /*  else
                   {
@@ -74,6 +73,12 @@ public class Raycast : MonoBehaviour
         {
             first_pinch = transform;
         }
+
+    }
+    public void StartAnim()
+    {
+        _anim = spawned_object.GetComponent<Animator>();
+        _anim.Play("PlayCube");
     }
 
 
